@@ -1,0 +1,52 @@
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity" tools:ignore="MergeRootFrame">
+
+    <ProgressBar
+        android:id="@+id/reload_circulair"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:indeterminateDrawable="@drawable/reload_circulair"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+
+        />
+
+    <TextView
+        android:id="@+id/textView_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/erreur"
+        android:textSize="@dimen/fontSizeNormal"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal"
+        >
+
+        <FrameLayout
+            android:id="@+id/master"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="fill_parent"
+            android:elevation="20dp"
+            />
+
+        <FrameLayout
+            android:id="@+id/slave"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="fill_parent"
+
+            />
+
+    </LinearLayout>
+</FrameLayout>

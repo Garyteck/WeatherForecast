@@ -1,0 +1,8 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="list_padding">25dp</dimen>
+    <dimen name="textview_padding">20dp</dimen>
+    <dimen name="progressbar_size">50dp</dimen>
+    <dimen name="fontSizeNormal">18sp</dimen>
+    <dimen name="fontSizeBig">36sp</dimen>
+</resources>

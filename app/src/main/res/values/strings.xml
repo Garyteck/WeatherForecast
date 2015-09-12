@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Paris Meteo</string>
+    <string name="matinLabel">Matin</string>
+    <string name="midiLabel">Midi</string>
+    <string name="soirLabel">Soir</string>
+    <string name="erreur">Une erreur est survenue</string>
+</resources>
