@@ -13,20 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.garypierre_louis.previsionmeteorologiques.fragments;
+package com.garytech.weatherfocast.fragments;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.ListView;
 
-import com.example.garypierre_louis.previsionmeteorologiques.R;
-import com.example.garypierre_louis.previsionmeteorologiques.adapter.ForeCastAdapter;
-import com.example.garypierre_louis.previsionmeteorologiques.interaction.OnListFragmentInteraction;
-import com.example.garypierre_louis.previsionmeteorologiques.model.Forecast;
+import com.garytech.weatherfocast.adapter.ForeCastAdapter;
+import com.garytech.weatherfocast.interaction.OnListFragmentInteraction;
+import com.garytech.weatherfocast.model.Forecast;
+import com.garytech.weatherforecast.R;
 
 
 /**
@@ -42,7 +41,7 @@ public class ForeCastListFragment extends ListFragment {
     /**
      * Set of data
      */
-    public Forecast[] mData;
+    public com.garytech.weatherfocast.model.Forecast[] mData;
 
     /**
      * Bundle key used to save data
@@ -54,7 +53,7 @@ public class ForeCastListFragment extends ListFragment {
      */
     public ForeCastListFragment() {}
 
-    public static ForeCastListFragment newInstance(Forecast[] forecast) {
+    public static ForeCastListFragment newInstance(com.garytech.weatherfocast.model.Forecast[] forecast) {
         ForeCastListFragment fragment = new ForeCastListFragment();
         Bundle args = new Bundle();
         args.putSerializable(FORECAST_PARAMETER, forecast);
@@ -66,7 +65,7 @@ public class ForeCastListFragment extends ListFragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mCallback = (OnListFragmentInteraction) activity;
+            mCallback = (com.garytech.weatherfocast.interaction.OnListFragmentInteraction) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnListFragmentInteraction");

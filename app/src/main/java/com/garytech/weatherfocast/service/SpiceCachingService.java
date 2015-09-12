@@ -1,4 +1,4 @@
-package com.example.garypierre_louis.previsionmeteorologiques.service;
+package com.garytech.weatherfocast.service;
 
 
 import android.app.Application;

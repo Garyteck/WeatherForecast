@@ -1,4 +1,4 @@
-package com.example.garypierre_louis.previsionmeteorologiques.model;
+package com.garytech.weatherfocast.model;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
@@ -14,7 +14,7 @@ public class WeatherForecast implements Serializable
         return list;
     }
 
-    private Forecast[] list;
+    private com.garytech.weatherfocast.model.Forecast[] list;
 
 
     public WeatherForecast() {} ;
@@ -27,7 +27,7 @@ public class WeatherForecast implements Serializable
                 '}';
     }
 
-    public Forecast getList(int position) {
+    public com.garytech.weatherfocast.model.Forecast getList(int position) {
         return this.list[position];
     }
 }

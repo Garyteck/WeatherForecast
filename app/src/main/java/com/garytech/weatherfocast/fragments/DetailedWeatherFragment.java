@@ -1,4 +1,4 @@
-package com.example.garypierre_louis.previsionmeteorologiques.fragments;
+package com.garytech.weatherfocast.fragments;
 
 
 import android.os.Bundle;
@@ -6,15 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.garypierre_louis.previsionmeteorologiques.helpers.TemperatureFormatter;
-import com.example.garypierre_louis.previsionmeteorologiques.R;
-import com.example.garypierre_louis.previsionmeteorologiques.model.Forecast;
-import com.example.garypierre_louis.previsionmeteorologiques.model.Temp;
-import com.example.garypierre_louis.previsionmeteorologiques.model.Weather;
+import com.garytech.weatherfocast.model.Forecast;
+import com.garytech.weatherforecast.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +19,7 @@ import com.example.garypierre_louis.previsionmeteorologiques.model.Weather;
 public class DetailedWeatherFragment extends Fragment {
     private static final String FORECAST_SELECTED_BUNDLE_KEY = "FORECAST_SELECTED_BUNDLE_KEY";
 
-    private Forecast previsions;
+    private com.garytech.weatherfocast.model.Forecast previsions;
 
     private TextView mMatin, mMidi, mSoir, mMain, mDescription;
 
@@ -43,7 +38,7 @@ public class DetailedWeatherFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            previsions = (Forecast) getArguments().getSerializable(FORECAST_SELECTED_BUNDLE_KEY);
+            previsions = (com.garytech.weatherfocast.model.Forecast) getArguments().getSerializable(FORECAST_SELECTED_BUNDLE_KEY);
         }
     }
 
@@ -59,11 +54,11 @@ public class DetailedWeatherFragment extends Fragment {
         mDescription = (TextView) view.findViewById(R.id.description) ;
 
 
-        Temp temperatures =  previsions.getTemp();
-        Weather[] weather =  previsions.getWeather(); // le JSON Weather est un array avec un seul object JSON, nous sommes obligés de faire une liste
-        mMatin.setText(TemperatureFormatter.format(Float.valueOf(temperatures.getMorn())));
-        mMidi.setText(TemperatureFormatter.format(Float.valueOf(temperatures.getDay())));
-        mSoir.setText(TemperatureFormatter.format(Float.valueOf(temperatures.getNight())));
+        com.garytech.weatherfocast.model.Temp temperatures =  previsions.getTemp();
+        com.garytech.weatherfocast.model.Weather[] weather =  previsions.getWeather(); // le JSON Weather est un array avec un seul object JSON, nous sommes obligés de faire une liste
+        mMatin.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getMorn())));
+        mMidi.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getDay())));
+        mSoir.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getNight())));
         mMain.setText(weather[0].getMain());
         mDescription.setText(weather[0].getDescription());
 

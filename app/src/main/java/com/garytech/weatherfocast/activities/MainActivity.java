@@ -1,4 +1,4 @@
-package com.example.garypierre_louis.previsionmeteorologiques.activities;
+package com.garytech.weatherfocast.activities;
 
 
 import android.os.Bundle;
@@ -7,25 +7,18 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.garypierre_louis.previsionmeteorologiques.R;
-import com.example.garypierre_louis.previsionmeteorologiques.fragments.DetailedWeatherFragment;
-import com.example.garypierre_louis.previsionmeteorologiques.fragments.ForeCastListFragment;
-import com.example.garypierre_louis.previsionmeteorologiques.interaction.OnListFragmentInteraction;
-import com.example.garypierre_louis.previsionmeteorologiques.model.WeatherForecast;
-import com.example.garypierre_louis.previsionmeteorologiques.requests.FiveDaysRequest;
-import com.example.garypierre_louis.previsionmeteorologiques.service.SpiceCachingService;
-import com.example.garypierre_louis.previsionmeteorologiques.utils.Utils;
+import com.garytech.weatherfocast.model.WeatherForecast;
+import com.garytech.weatherforecast.R;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-
-public class MainActivity extends AppCompatActivity  implements RequestListener<WeatherForecast>,OnListFragmentInteraction {
+public class MainActivity extends AppCompatActivity  implements RequestListener<WeatherForecast>, com.garytech.weatherfocast.interaction.OnListFragmentInteraction {
 
     /**
      * Rest Service
      */
-    public final static SpiceManager mSpiceManager = new SpiceManager(SpiceCachingService.class);
+    public final static SpiceManager mSpiceManager = new SpiceManager(com.garytech.weatherfocast.service.SpiceCachingService.class);
 
     /**
      * key bundles
@@ -37,7 +30,7 @@ public class MainActivity extends AppCompatActivity  implements RequestListener<
     /**
      * data
      */
-    WeatherForecast mWeatherForecast;
+    com.garytech.weatherfocast.model.WeatherForecast mWeatherForecast;
 
     /**
      * Views
@@ -75,7 +68,7 @@ public class MainActivity extends AppCompatActivity  implements RequestListener<
         super.onResume();
 
         if (!requestSucceeded) {
-            mSpiceManager.execute(new FiveDaysRequest(), Utils.CACHE_NAME, DurationInMillis.ALWAYS_EXPIRED, this);
+            mSpiceManager.execute(new com.garytech.weatherfocast.requests.FiveDaysRequest(), com.garytech.weatherfocast.utils.Utils.CACHE_NAME, DurationInMillis.ALWAYS_EXPIRED, this);
             mProgressBar.setVisibility(View.VISIBLE);
             mTextViewError.setVisibility(View.GONE);
 
@@ -89,7 +82,7 @@ public class MainActivity extends AppCompatActivity  implements RequestListener<
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        mWeatherForecast = (WeatherForecast) savedInstanceState.getSerializable(WEATHER_FORECAST_BUNDLE_KEY);
+        mWeatherForecast = (com.garytech.weatherfocast.model.WeatherForecast) savedInstanceState.getSerializable(WEATHER_FORECAST_BUNDLE_KEY);
         requestSucceeded = savedInstanceState.getBoolean(REQUEST_SUCCEDED_BUNDLE_KEY);
     }
 
@@ -109,7 +102,7 @@ public class MainActivity extends AppCompatActivity  implements RequestListener<
     private void replaceFragment(int containerId,int position, boolean addToBackStack) {
         android.support.v4.app.FragmentTransaction transaction  = getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
-                .replace(containerId, DetailedWeatherFragment.newInstance(mWeatherForecast.getList(position)));
+                .replace(containerId, com.garytech.weatherfocast.fragments.DetailedWeatherFragment.newInstance(mWeatherForecast.getList(position)));
         if (addToBackStack) {
             transaction.addToBackStack("");
         }
@@ -141,12 +134,12 @@ public class MainActivity extends AppCompatActivity  implements RequestListener<
     }
 
     @Override
-    public void onRequestSuccess(WeatherForecast weatherForecast) {
+    public void onRequestSuccess(com.garytech.weatherfocast.model.WeatherForecast weatherForecast) {
         requestSucceeded = true;
         resetUi(requestSucceeded);
         this.mWeatherForecast = weatherForecast;
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.master, ForeCastListFragment.newInstance(weatherForecast.getList()))
+                .replace(R.id.master, com.garytech.weatherfocast.fragments.ForeCastListFragment.newInstance(weatherForecast.getList()))
                 .commitAllowingStateLoss();
 
         if (findViewById(R.id.slave) != null) {

@@ -5,7 +5,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.example.garypierre_louis.previsionmeteorologiques"
+        applicationId "com.garytech.weatherforecast"
         minSdkVersion 11
         targetSdkVersion 22
         versionCode 1

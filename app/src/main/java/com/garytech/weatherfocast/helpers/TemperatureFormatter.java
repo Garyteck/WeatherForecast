@@ -1,4 +1,4 @@
-package com.example.garypierre_louis.previsionmeteorologiques.helpers;
+package com.garytech.weatherfocast.helpers;
 
 public class TemperatureFormatter {
 

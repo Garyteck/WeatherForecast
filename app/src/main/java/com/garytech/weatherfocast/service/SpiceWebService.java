@@ -1,10 +1,9 @@
-package com.example.garypierre_louis.previsionmeteorologiques.service;
+package com.garytech.weatherfocast.service;
 
 import com.octo.android.robospice.request.springandroid.SpringAndroidSpiceRequest;
 import com.octo.android.robospice.retry.DefaultRetryPolicy;
 import com.octo.android.robospice.retry.RetryPolicy;
 
-import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.SerializationConfig;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;

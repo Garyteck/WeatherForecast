@@ -1,9 +1,8 @@
-package com.example.garypierre_louis.previsionmeteorologiques.requests;
+package com.garytech.weatherfocast.requests;
 
 
-import com.example.garypierre_louis.previsionmeteorologiques.model.WeatherForecast;
 import com.octo.android.robospice.persistence.exception.SpiceException;
-import com.example.garypierre_louis.previsionmeteorologiques.service.SpiceWebService;
+
 import org.springframework.http.HttpEntity;
 
 import org.springframework.http.HttpMethod;
@@ -15,26 +14,25 @@ import org.springframework.web.client.RestTemplate;
 import java.net.URI;
 
 /**
- * Created by Gary PIERRE-LOUIS on 02/06/2015.
  */
-public class FiveDaysRequest extends SpiceWebService<WeatherForecast> {
+public class FiveDaysRequest extends com.garytech.weatherfocast.service.SpiceWebService<com.garytech.weatherfocast.model.WeatherForecast> {
     protected RestTemplate restTemplate;
     private HttpEntity<?> requestEntity;
 
     public FiveDaysRequest(){
-        super(WeatherForecast.class);
+        super(com.garytech.weatherfocast.model.WeatherForecast.class);
         this.restTemplate = getRestTemplate();
 
     }
 
     @Override
-    public WeatherForecast loadDataFromNetwork() throws Exception {
+    public com.garytech.weatherfocast.model.WeatherForecast loadDataFromNetwork() throws Exception {
         String url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=Paris&units=metric&cnt=5";
         URI uri = new URI(url);
         String message;
 
         try {
-            ResponseEntity<WeatherForecast> response = restTemplate.exchange(uri, HttpMethod.GET, requestEntity, WeatherForecast.class);
+            ResponseEntity<com.garytech.weatherfocast.model.WeatherForecast> response = restTemplate.exchange(uri, HttpMethod.GET, requestEntity, com.garytech.weatherfocast.model.WeatherForecast.class);
             return response.getBody();
         }catch (HttpServerErrorException e) {
             message = e.getResponseBodyAsString();

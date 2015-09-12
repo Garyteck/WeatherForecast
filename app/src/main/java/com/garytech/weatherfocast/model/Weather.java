@@ -1,4 +1,4 @@
-package com.example.garypierre_louis.previsionmeteorologiques.model;
+package com.garytech.weatherfocast.model;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 

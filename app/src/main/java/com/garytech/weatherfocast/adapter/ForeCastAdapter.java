@@ -1,4 +1,4 @@
-package com.example.garypierre_louis.previsionmeteorologiques.adapter;
+package com.garytech.weatherfocast.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,10 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
-import com.example.garypierre_louis.previsionmeteorologiques.helpers.DayFormatter;
-import com.example.garypierre_louis.previsionmeteorologiques.helpers.TemperatureFormatter;
-import com.example.garypierre_louis.previsionmeteorologiques.model.Forecast;
-import com.example.garypierre_louis.previsionmeteorologiques.R;
+import com.garytech.weatherfocast.helpers.DayFormatter;
+import com.garytech.weatherfocast.helpers.TemperatureFormatter;
+import com.garytech.weatherforecast.R;
 
 
 /**
@@ -19,7 +18,7 @@ import com.example.garypierre_louis.previsionmeteorologiques.R;
  */
 public class ForeCastAdapter extends ArrayAdapter implements ListAdapter{
 
-    public ForeCastAdapter(final Forecast[] forecast, final Context context) {
+    public ForeCastAdapter(final com.garytech.weatherfocast.model.Forecast[] forecast, final Context context) {
         super(context, 0, forecast);
     }
 
@@ -38,7 +37,7 @@ public class ForeCastAdapter extends ArrayAdapter implements ListAdapter{
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        final Forecast prevision= (Forecast) getItem(position);
+        final com.garytech.weatherfocast.model.Forecast prevision= (com.garytech.weatherfocast.model.Forecast) getItem(position);
 
         final DayFormatter dayFormatter = new DayFormatter();
         final String day = dayFormatter.format(Long.valueOf(prevision.getDt()));
