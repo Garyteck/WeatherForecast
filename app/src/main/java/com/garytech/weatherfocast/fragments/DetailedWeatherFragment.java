@@ -6,10 +6,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.garytech.weatherfocast.model.Forecast;
 import com.garytech.weatherforecast.R;
+import com.squareup.picasso.Picasso;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +25,7 @@ public class DetailedWeatherFragment extends Fragment {
 
     private TextView mMatin, mMidi, mSoir, mMain, mDescription;
 
+    private ImageView mIcon;
 
     public DetailedWeatherFragment() {}
 
@@ -52,7 +55,7 @@ public class DetailedWeatherFragment extends Fragment {
 
         mMain = (TextView) view.findViewById(R.id.main);
         mDescription = (TextView) view.findViewById(R.id.description) ;
-
+        mIcon = (ImageView) view.findViewById(R.id.icon);
 
         com.garytech.weatherfocast.model.Temp temperatures =  previsions.getTemp();
         com.garytech.weatherfocast.model.Weather[] weather =  previsions.getWeather(); // le JSON Weather est un array avec un seul object JSON, nous sommes obligés de faire une liste
@@ -61,6 +64,10 @@ public class DetailedWeatherFragment extends Fragment {
         mSoir.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getNight())));
         mMain.setText(weather[0].getMain());
         mDescription.setText(weather[0].getDescription());
+
+        Picasso.with(getActivity())
+                .load(getString(R.string.icon_url).concat(previsions.getWeather()[0].getIcon().concat(getString(R.string.icon_extension))))
+                .into(mIcon);
 
         return view;
 

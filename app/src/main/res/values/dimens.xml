@@ -5,4 +5,6 @@
     <dimen name="progressbar_size">50dp</dimen>
     <dimen name="fontSizeNormal">18sp</dimen>
     <dimen name="fontSizeBig">36sp</dimen>
+
+    <dimen name="icon_size">50dp</dimen>
 </resources>
