@@ -4,3 +4,9 @@
 /.idea/libraries
 .DS_Store
 /build
+build.gradle
+.iml
+/.idea
+WeatherForecast.iml
+app/app.iml
+app/src/main/res/values/API_KEY.xml

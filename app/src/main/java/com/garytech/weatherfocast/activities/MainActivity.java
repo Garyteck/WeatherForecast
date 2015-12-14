@@ -2,6 +2,7 @@ package com.garytech.weatherfocast.activities;
 
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity  implements RequestListener<
     /**
      * data
      */
-    com.garytech.weatherfocast.model.WeatherForecast mWeatherForecast;
+    WeatherForecast mWeatherForecast;
 
     /**
      * Views
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity  implements RequestListener<
         super.onResume();
 
         if (!requestSucceeded) {
-            mSpiceManager.execute(new com.garytech.weatherfocast.requests.FiveDaysRequest(), com.garytech.weatherfocast.utils.Utils.CACHE_NAME, DurationInMillis.ALWAYS_EXPIRED, this);
+            mSpiceManager.execute(new com.garytech.weatherfocast.requests.FiveDaysRequest(this), com.garytech.weatherfocast.utils.Utils.CACHE_NAME, DurationInMillis.ALWAYS_EXPIRED, this);
             mProgressBar.setVisibility(View.VISIBLE);
             mTextViewError.setVisibility(View.GONE);
 
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity  implements RequestListener<
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        mWeatherForecast = (com.garytech.weatherfocast.model.WeatherForecast) savedInstanceState.getSerializable(WEATHER_FORECAST_BUNDLE_KEY);
+        mWeatherForecast = (WeatherForecast) savedInstanceState.getSerializable(WEATHER_FORECAST_BUNDLE_KEY);
         requestSucceeded = savedInstanceState.getBoolean(REQUEST_SUCCEDED_BUNDLE_KEY);
     }
 
@@ -100,7 +101,8 @@ public class MainActivity extends AppCompatActivity  implements RequestListener<
     }
 
     private void replaceFragment(int containerId,int position, boolean addToBackStack) {
-        android.support.v4.app.FragmentTransaction transaction  = getSupportFragmentManager().beginTransaction()
+
+        FragmentTransaction transaction  = getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
                 .replace(containerId, com.garytech.weatherfocast.fragments.DetailedWeatherFragment.newInstance(mWeatherForecast.getList(position)));
         if (addToBackStack) {
