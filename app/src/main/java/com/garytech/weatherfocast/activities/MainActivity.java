@@ -1,25 +1,42 @@
 package com.garytech.weatherfocast.activities;
 
 
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.garytech.weatherfocast.LocationModule;
+import com.garytech.weatherfocast.base.BaseActivity;
 import com.garytech.weatherfocast.model.WeatherForecast;
+import com.garytech.weatherfocast.network.Request;
+import com.garytech.weatherfocast.network.WebServiceModule;
 import com.garytech.weatherforecast.R;
 import com.octo.android.robospice.SpiceManager;
 import com.octo.android.robospice.persistence.DurationInMillis;
 import com.octo.android.robospice.persistence.exception.SpiceException;
 import com.octo.android.robospice.request.listener.RequestListener;
-public class MainActivity extends AppCompatActivity  implements RequestListener<WeatherForecast>, com.garytech.weatherfocast.interaction.OnListFragmentInteraction {
+
+import java.util.Arrays;
+import java.util.List;
+
+import javax.inject.Inject;
+
+public class MainActivity extends BaseActivity implements RequestListener<WeatherForecast>, com.garytech.weatherfocast.interaction.OnListFragmentInteraction {
 
     /**
      * Rest Service
      */
-    public final static SpiceManager mSpiceManager = new SpiceManager(com.garytech.weatherfocast.service.SpiceCachingService.class);
+    @Inject
+    SpiceManager mSpiceManager;
+
+    @Inject
+    Request mRequest;
+
+    @Inject
+    Location mLocation;
 
     /**
      * key bundles
@@ -44,7 +61,7 @@ public class MainActivity extends AppCompatActivity  implements RequestListener<
      */
     int mCurrentPosition = -1;
 
-    boolean requestSucceeded ;
+    boolean requestSucceeded;
 
 
     @Override
@@ -55,6 +72,11 @@ public class MainActivity extends AppCompatActivity  implements RequestListener<
         mProgressBar = (ProgressBar) findViewById(R.id.reload_circulair);
         mTextViewError = (TextView) findViewById(R.id.textView_error);
 
+    }
+
+    @Override
+    protected List<Object> getModules() {
+        return Arrays.<Object>asList(new WebServiceModule(), new LocationModule(this));
     }
 
 
@@ -69,15 +91,14 @@ public class MainActivity extends AppCompatActivity  implements RequestListener<
         super.onResume();
 
         if (!requestSucceeded) {
-            mSpiceManager.execute(new com.garytech.weatherfocast.requests.FiveDaysRequest(this), com.garytech.weatherfocast.utils.Utils.CACHE_NAME, DurationInMillis.ALWAYS_EXPIRED, this);
+            mSpiceManager.execute(mRequest, com.garytech.weatherfocast.utils.Utils.CACHE_NAME, DurationInMillis.ALWAYS_EXPIRED, this);
             mProgressBar.setVisibility(View.VISIBLE);
             mTextViewError.setVisibility(View.GONE);
 
-        }else {
+        } else {
             resetUi(requestSucceeded);
         }
     }
-
 
 
     @Override
@@ -100,9 +121,9 @@ public class MainActivity extends AppCompatActivity  implements RequestListener<
         }
     }
 
-    private void replaceFragment(int containerId,int position, boolean addToBackStack) {
+    private void replaceFragment(int containerId, int position, boolean addToBackStack) {
 
-        FragmentTransaction transaction  = getSupportFragmentManager().beginTransaction()
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left)
                 .replace(containerId, com.garytech.weatherfocast.fragments.DetailedWeatherFragment.newInstance(mWeatherForecast.getList(position)));
         if (addToBackStack) {
@@ -110,7 +131,6 @@ public class MainActivity extends AppCompatActivity  implements RequestListener<
         }
         transaction.commitAllowingStateLoss();
     }
-
 
 
     @Override
@@ -122,7 +142,7 @@ public class MainActivity extends AppCompatActivity  implements RequestListener<
 
     @Override
     protected void onStop() {
-        if (mSpiceManager != null && mSpiceManager.isStarted() ) {
+        if (mSpiceManager != null && mSpiceManager.isStarted()) {
             mSpiceManager.shouldStop();
         }
         super.onStop();
@@ -154,7 +174,7 @@ public class MainActivity extends AppCompatActivity  implements RequestListener<
         if (requestSucceeded) {
             mProgressBar.setVisibility(View.GONE);
             mTextViewError.setVisibility(View.GONE);
-        }else {
+        } else {
             mProgressBar.setVisibility(View.GONE);
             mTextViewError.setVisibility(View.VISIBLE);
         }

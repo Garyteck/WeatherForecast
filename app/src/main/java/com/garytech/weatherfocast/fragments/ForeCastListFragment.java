@@ -51,7 +51,8 @@ public class ForeCastListFragment extends ListFragment {
     /**
      * Empty fragment is used by the Fragmentmanager when the fragment is recreated
      */
-    public ForeCastListFragment() {}
+    public ForeCastListFragment() {
+    }
 
     public static ForeCastListFragment newInstance(com.garytech.weatherfocast.model.Forecast[] forecast) {
         ForeCastListFragment fragment = new ForeCastListFragment();
@@ -77,10 +78,9 @@ public class ForeCastListFragment extends ListFragment {
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
         if (savedInstanceState != null) {
-            mData = (Forecast[])savedInstanceState.getSerializable(FORECAST_PARAMETER);
+            mData = (Forecast[]) savedInstanceState.getSerializable(FORECAST_PARAMETER);
         }
     }
-
 
 
     @Override
@@ -92,6 +92,7 @@ public class ForeCastListFragment extends ListFragment {
 
         }
     }
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -103,7 +104,6 @@ public class ForeCastListFragment extends ListFragment {
 
     /**
      * This method is called when an item on the list was clicked
-     *
      */
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {

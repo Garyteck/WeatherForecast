@@ -4,8 +4,8 @@
     <string name="midiLabel">Midi</string>
     <string name="soirLabel">Soir</string>
     <string name="erreur">Une erreur est survenue</string>
-    <string name="ws_url">http://api.openweathermap.org/data/2.5/forecast/daily?q=Paris&amp;units=metric&amp;cnt=5</string>
-    <string name="APP_ID">&amp;APPID=</string>
+    <string name="ws_url" formatted="false">http://api.openweathermap.org/data/2.5/forecast?lat=%d&amp;lon=%d</string>
+    <string name="APP_ID">&amp;appid=</string>
     <string name="icon_url">http://openweathermap.org/img/w/</string>
     <string name="icon_extension">.png</string>
 </resources>

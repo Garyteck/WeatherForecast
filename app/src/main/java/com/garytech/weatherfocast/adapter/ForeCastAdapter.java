@@ -17,9 +17,9 @@ import com.squareup.picasso.Picasso;
 
 
 /**
- *Adapter for the ListView in the ListFragment, it uses the ViewHolder pattern
+ * Adapter for the ListView in the ListFragment, it uses the ViewHolder pattern
  */
-public class ForeCastAdapter extends ArrayAdapter implements ListAdapter{
+public class ForeCastAdapter extends ArrayAdapter implements ListAdapter {
 
     public ForeCastAdapter(final Forecast[] forecast, final Context context) {
         super(context, 0, forecast);
@@ -41,12 +41,12 @@ public class ForeCastAdapter extends ArrayAdapter implements ListAdapter{
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        final Forecast prevision= (Forecast) getItem(position);
+        final Forecast prevision = (Forecast) getItem(position);
 
         final DayFormatter dayFormatter = new DayFormatter();
         final String day = dayFormatter.format(Long.valueOf(prevision.getDt()));
         viewHolder.dayTextView.setText(day);
-        viewHolder.temperature.setText(TemperatureFormatter.format(Float.valueOf(prevision.getTemp().getDay())));
+        viewHolder.temperature.setText(TemperatureFormatter.format(Float.valueOf(prevision.getMain().getTemp())));
 
         Picasso.with(getContext())
                 .load(getContext().getString(R.string.icon_url).concat(prevision.getWeather()[0].getIcon().concat(getContext().getString(R.string.icon_extension))))

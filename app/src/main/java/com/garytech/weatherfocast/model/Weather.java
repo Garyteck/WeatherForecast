@@ -4,9 +4,8 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import java.io.Serializable;
 
-@JsonIgnoreProperties({"id","city","cod"})
-public class Weather implements Serializable
-{
+@JsonIgnoreProperties({"id", "city", "cod"})
+public class Weather implements Serializable {
 
     private String icon;
 
@@ -15,33 +14,27 @@ public class Weather implements Serializable
     private String main;
 
 
-    public String getIcon ()
-    {
+    public String getIcon() {
         return icon;
     }
 
-    public void setIcon (String icon)
-    {
+    public void setIcon(String icon) {
         this.icon = icon;
     }
 
-    public String getDescription ()
-    {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription (String description)
-    {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public String getMain ()
-    {
+    public String getMain() {
         return main;
     }
 
-    public void setMain (String main)
-    {
+    public void setMain(String main) {
         this.main = main;
     }
 

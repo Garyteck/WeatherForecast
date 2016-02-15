@@ -5,9 +5,8 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Arrays;
 
-@JsonIgnoreProperties({"message","cnt","city","cod"})
-public class WeatherForecast implements Serializable
-{
+@JsonIgnoreProperties({"message", "cnt", "city", "cod"})
+public class WeatherForecast implements Serializable {
 
 
     public Forecast[] getList() {
@@ -17,7 +16,10 @@ public class WeatherForecast implements Serializable
     private com.garytech.weatherfocast.model.Forecast[] list;
 
 
-    public WeatherForecast() {} ;
+    public WeatherForecast() {
+    }
+
+    ;
 
 
     @Override

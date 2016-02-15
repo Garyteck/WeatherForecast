@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.garytech.weatherfocast.model.Forecast;
+import com.garytech.weatherfocast.model.Temp;
 import com.garytech.weatherforecast.R;
 import com.squareup.picasso.Picasso;
 
@@ -27,7 +28,8 @@ public class DetailedWeatherFragment extends Fragment {
 
     private ImageView mIcon;
 
-    public DetailedWeatherFragment() {}
+    public DetailedWeatherFragment() {
+    }
 
     public static DetailedWeatherFragment newInstance(Forecast param1) {
         DetailedWeatherFragment fragment = new DetailedWeatherFragment();
@@ -49,19 +51,21 @@ public class DetailedWeatherFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_detailed_weather, container, false);
-        mMatin = (TextView)view.findViewById(R.id.matin);
+        mMatin = (TextView) view.findViewById(R.id.matin);
         mMidi = (TextView) view.findViewById(R.id.midi);
         mSoir = (TextView) view.findViewById(R.id.soir);
 
         mMain = (TextView) view.findViewById(R.id.main);
-        mDescription = (TextView) view.findViewById(R.id.description) ;
+        mDescription = (TextView) view.findViewById(R.id.description);
         mIcon = (ImageView) view.findViewById(R.id.icon);
 
-        com.garytech.weatherfocast.model.Temp temperatures =  previsions.getTemp();
-        com.garytech.weatherfocast.model.Weather[] weather =  previsions.getWeather(); // le JSON Weather est un array avec un seul object JSON, nous sommes obligés de faire une liste
-        mMatin.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getMorn())));
-        mMidi.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getDay())));
-        mSoir.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getNight())));
+        Temp temperatures = previsions.getMain();
+        com.garytech.weatherfocast.model.Weather[] weather = previsions.getWeather(); // le JSON Weather est un array avec un seul object JSON, nous sommes obligés de faire une liste
+
+        mMatin.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getTemp_min())));
+        mMidi.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getTemp())));
+        mSoir.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getTemp_max())));
+
         mMain.setText(weather[0].getMain());
         mDescription.setText(weather[0].getDescription());
 
@@ -72,7 +76,6 @@ public class DetailedWeatherFragment extends Fragment {
         return view;
 
     }
-
 
 
 }

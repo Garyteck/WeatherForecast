@@ -12,13 +12,13 @@ public class Temp implements Serializable
 
     private String eve;
 
-    private String max;
+    private String temp_max;
 
-    private String morn;
+    private String temp_min;
 
     private String night;
 
-    private String day;
+    private String temp;
 
     public String getMin ()
     {
@@ -40,24 +40,24 @@ public class Temp implements Serializable
         this.eve = eve;
     }
 
-    public String getMax ()
+    public String getTemp_max()
     {
-        return max;
+        return temp_max;
     }
 
-    public void setMax (String max)
+    public void setTemp_max(String temp_max)
     {
-        this.max = max;
+        this.temp_max = temp_max;
     }
 
-    public String getMorn ()
+    public String getTemp_min()
     {
-        return morn;
+        return temp_min;
     }
 
-    public void setMorn (String morn)
+    public void setTemp_min(String temp_min)
     {
-        this.morn = morn;
+        this.temp_min = temp_min;
     }
 
     public String getNight ()
@@ -70,19 +70,19 @@ public class Temp implements Serializable
         this.night = night;
     }
 
-    public String getDay ()
+    public String getTemp()
     {
-        return day;
+        return temp;
     }
 
-    public void setDay (String day)
+    public void setTemp(String temp)
     {
-        this.day = day;
+        this.temp = temp;
     }
 
     @Override
     public String toString()
     {
-        return "ClassPojo [min = "+min+", eve = "+eve+", max = "+max+", morn = "+morn+", night = "+night+", day = "+day+"]";
+        return "ClassPojo [min = "+min+", eve = "+eve+", temp_max = "+ temp_max +", temp_min = "+ temp_min +", night = "+night+", temp = "+ temp +"]";
     }
 }
