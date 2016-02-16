@@ -23,7 +23,7 @@ package com.garytech.weatherfocast;
 
 import android.app.Application;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import dagger.ObjectGraph;
@@ -39,7 +39,7 @@ public class App extends Application {
     }
 
     private List<Object> getModules() {
-        return Arrays.<Object>asList(new AppModule(this));
+        return Collections.<Object>singletonList(new AppModule(this));
     }
 
     public ObjectGraph createScopedGraph(Object... modules) {

@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.garytech.weatherfocast.helpers.DayFormatter;
 import com.garytech.weatherfocast.model.Forecast;
 import com.garytech.weatherfocast.model.Temp;
+import com.garytech.weatherfocast.model.Weather;
 import com.garytech.weatherforecast.R;
 import com.squareup.picasso.Picasso;
 
@@ -22,11 +24,7 @@ import com.squareup.picasso.Picasso;
 public class DetailedWeatherFragment extends Fragment {
     private static final String FORECAST_SELECTED_BUNDLE_KEY = "FORECAST_SELECTED_BUNDLE_KEY";
 
-    private com.garytech.weatherfocast.model.Forecast previsions;
-
-    private TextView mMatin, mMidi, mSoir, mMain, mDescription;
-
-    private ImageView mIcon;
+    private Forecast previsions;
 
     public DetailedWeatherFragment() {
     }
@@ -43,7 +41,7 @@ public class DetailedWeatherFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            previsions = (com.garytech.weatherfocast.model.Forecast) getArguments().getSerializable(FORECAST_SELECTED_BUNDLE_KEY);
+            previsions = (Forecast) getArguments().getSerializable(FORECAST_SELECTED_BUNDLE_KEY);
         }
     }
 
@@ -51,23 +49,29 @@ public class DetailedWeatherFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_detailed_weather, container, false);
-        mMatin = (TextView) view.findViewById(R.id.matin);
-        mMidi = (TextView) view.findViewById(R.id.midi);
-        mSoir = (TextView) view.findViewById(R.id.soir);
+
+        TextView mMin, mAverage, mMax, mMain, mDescription;
+
+        ImageView mIcon;
+
+        mMin = (TextView) view.findViewById(R.id.min);
+        mAverage = (TextView) view.findViewById(R.id.average);
+        mMax = (TextView) view.findViewById(R.id.max);
 
         mMain = (TextView) view.findViewById(R.id.main);
         mDescription = (TextView) view.findViewById(R.id.description);
         mIcon = (ImageView) view.findViewById(R.id.icon);
 
         Temp temperatures = previsions.getMain();
-        com.garytech.weatherfocast.model.Weather[] weather = previsions.getWeather(); // le JSON Weather est un array avec un seul object JSON, nous sommes obligés de faire une liste
+        Weather[] weather = previsions.getWeather();
 
-        mMatin.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getTemp_min())));
-        mMidi.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getTemp())));
-        mSoir.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getTemp_max())));
+        mMin.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getTemp_min())));
+        mAverage.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getTemp())));
+        mMax.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getTemp_max())));
 
         mMain.setText(weather[0].getMain());
         mDescription.setText(weather[0].getDescription());
+
 
         Picasso.with(getActivity())
                 .load(getString(R.string.icon_url).concat(previsions.getWeather()[0].getIcon().concat(getString(R.string.icon_extension))))

@@ -3,6 +3,7 @@ package com.garytech.weatherfocast.helpers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 
 /**
@@ -14,13 +15,11 @@ public class DayFormatter {
 
     public String format(final long unixTimestamp) {
         final long milliseconds = unixTimestamp * MILLISECONDS_IN_SECONDS;
-        return  getDayOfWeek(milliseconds);
+        return getDayOfWeek(milliseconds);
 
     }
 
     private String getDayOfWeek(final long milliseconds) {
-        return new SimpleDateFormat("EEEE").format(new Date(milliseconds));
+        return new SimpleDateFormat("EEEE à HH:00", Locale.FRENCH).format(new Date(milliseconds));
     }
-
-
 }

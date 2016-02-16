@@ -1,10 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.garypierre_louis.weatherforecast.fragments.DetailedWeatherFragment"
-    android:background="@color/background_floating_material_light"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/background_floating_material_light"
+              android:orientation="vertical">
 
 
     <RelativeLayout
@@ -20,17 +18,18 @@
             >
 
             <TextView
+                android:id="@+id/minLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/matinLabel"
-                android:padding="20dp"
-                android:text="@string/matinLabel"
+                android:padding="@dimen/paddingLabel"
+                android:text="@string/minLabel"
                 android:textSize="@dimen/fontSizeNormal"
                 />
+
             <TextView
+                android:id="@+id/min"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/matin"
                 android:padding="20dp"
                 android:textColor="@color/main_color"
                 android:textSize="@dimen/fontSizeNormal"
@@ -38,6 +37,7 @@
 
                 />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,19 +45,21 @@
             android:orientation="vertical"
 
             >
+
             <TextView
+                android:id="@+id/averageLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/midiLabel"
-                android:padding="20dp"
-                android:text="@string/midiLabel"
+                android:padding="@dimen/paddingLabel"
+                android:text="@string/averageLabel"
                 android:textSize="@dimen/fontSizeNormal"
 
                 />
+
             <TextView
+                android:id="@+id/average"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/midi"
                 android:padding="20dp"
                 android:textColor="@color/main_color"
                 android:textSize="@dimen/fontSizeNormal"
@@ -73,21 +75,22 @@
             android:orientation="vertical"
 
             >
+
             <TextView
+                android:id="@+id/maxLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/soirLabel"
-                android:padding="20dp"
                 android:layout_alignParentRight="true"
-                android:text="@string/soirLabel"
+                android:padding="@dimen/paddingLabel"
+                android:text="@string/maxLabel"
                 android:textSize="@dimen/fontSizeNormal"
 
                 />
 
             <TextView
+                android:id="@+id/max"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/soir"
                 android:padding="20dp"
                 android:textColor="@color/main_color"
                 android:textSize="@dimen/fontSizeNormal"
@@ -99,38 +102,37 @@
 
     <RelativeLayout
         android:id="@+id/temps"
-        android:layout_below="@id/evolutionTemperature"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/evolutionTemperature">
+
         <TextView
+            android:id="@+id/main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/main"
-            android:padding="20dp"
             android:layout_alignParentLeft="true"
+            android:padding="@dimen/paddingLabel"
             android:textSize="@dimen/fontSizeNormal"
 
             />
 
 
         <ImageView
+            android:id="@+id/icon"
             android:layout_width="@dimen/icon_size"
             android:layout_height="@dimen/icon_size"
-            android:id="@+id/icon"
-            android:scaleType="fitXY"
-            android:layout_centerInParent="true"/>
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY"/>
 
         <TextView
+            android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/description"
-            android:padding="20dp"
             android:layout_alignParentRight="true"
+            android:padding="@dimen/paddingLabel"
             android:textSize="@dimen/fontSizeNormal"
 
             />
-
-
 
 
     </RelativeLayout>

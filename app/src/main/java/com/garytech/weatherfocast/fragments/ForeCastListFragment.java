@@ -62,9 +62,11 @@ public class ForeCastListFragment extends ListFragment {
         return fragment;
     }
 
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+
         try {
             mCallback = (com.garytech.weatherfocast.interaction.OnListFragmentInteraction) activity;
         } catch (ClassCastException e) {
@@ -86,6 +88,7 @@ public class ForeCastListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         if (getArguments() != null) {
             mData = (Forecast[]) getArguments().getSerializable(FORECAST_PARAMETER);
             setListAdapter(new ForeCastAdapter(mData, getActivity()));

@@ -7,7 +7,7 @@ import dagger.Module;
 import dagger.Provides;
 
 /**
- * This module is a library because it does not inject dependencies , its dependencies are used in other modules
+ * This module is a library because it does not provide dependencies ( there is no inject annotation ) , its dependencies are used in other modules
  */
 @Module(library = true)
 public class AppModule {

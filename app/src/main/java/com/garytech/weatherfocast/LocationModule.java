@@ -27,19 +27,15 @@ import android.location.LocationManager;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(library = true)
+@Module(complete = false, library = true)
 public class LocationModule {
 
     Location mLocation;
 
-    public LocationModule(Context context) {
-        LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        mLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-    }
-
     @Provides
-    Location provideLocation() {
-        return mLocation;
+    Location provideLocation(Context context) {
+        LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        return mLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
     }
 
 }

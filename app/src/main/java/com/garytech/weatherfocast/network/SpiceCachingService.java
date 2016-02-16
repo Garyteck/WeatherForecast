@@ -17,15 +17,14 @@ import java.util.Collections;
 
 public class SpiceCachingService extends SpringAndroidSpiceService {
 
-    private RestTemplate restTemplate = new RestTemplate();
-
     @Override
     public RestTemplate createRestTemplate() {
         MappingJacksonHttpMessageConverter converter = new MappingJacksonHttpMessageConverter();
         converter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
         converter.getObjectMapper().configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        RestTemplate restTemplate = new RestTemplate();
         restTemplate.getMessageConverters().add(converter);
-        return this.restTemplate;
+        return restTemplate;
     }
 
     @Override
