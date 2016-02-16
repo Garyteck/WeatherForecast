@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Météo</string>
-    <string name="minLabel">Matin</string>
-    <string name="averageLabel">Midi</string>
-    <string name="maxLabel">Soir</string>
+    <string name="minLabel">Min</string>
+    <string name="averageLabel">Moy</string>
+    <string name="maxLabel">Max</string>
     <string name="erreur">Une erreur est survenue</string>
     <string name="ws_url" formatted="false">http://api.openweathermap.org/data/2.5/forecast?lat=%d&amp;lon=%d</string>
     <string name="default_url" formatted="false">http://api.openweathermap.org/data/2.5/forecast?lat=48&amp;lon=2</string>

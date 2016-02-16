@@ -38,6 +38,7 @@ public class MainActivity extends BaseActivity implements RequestListener<Weathe
     @Inject
     Request mRequest;
 
+
     /**
      * key bundles
      */
@@ -80,6 +81,8 @@ public class MainActivity extends BaseActivity implements RequestListener<Weathe
                 executeRequest();
             }
         });
+
+
     }
 
     @Override

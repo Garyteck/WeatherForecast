@@ -4,7 +4,7 @@ package com.garytech.weatherfocast.network;
 import android.content.Context;
 import android.location.Location;
 
-import com.garytech.weatherfocast.AppModule;
+import com.garytech.weatherfocast.ContextModule;
 import com.garytech.weatherfocast.LocationModule;
 import com.garytech.weatherfocast.activities.MainActivity;
 import com.octo.android.robospice.SpiceManager;
@@ -18,7 +18,7 @@ import dagger.Provides;
  * This module will inject a request manager and a request object to the main activity
  * This module is not complete because it uses the context provided by the app module
  */
-@Module(injects = MainActivity.class, includes = LocationModule.class, addsTo = AppModule.class)
+@Module(injects = MainActivity.class, includes = LocationModule.class, addsTo = ContextModule.class)
 public class WebServiceModule {
 
     @Provides

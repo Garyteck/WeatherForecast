@@ -10,11 +10,12 @@ import dagger.Provides;
  * This module is a library because it does not provide dependencies ( there is no inject annotation ) , its dependencies are used in other modules
  */
 @Module(library = true)
-public class AppModule {
+public class ContextModule {
+
 
     Context mContext;
 
-    public AppModule(Application app) {
+    public ContextModule(Application app) {
         mContext = app.getApplicationContext();
     }
 

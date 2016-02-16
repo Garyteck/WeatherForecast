@@ -30,12 +30,10 @@ import dagger.Provides;
 @Module(complete = false, library = true)
 public class LocationModule {
 
-    Location mLocation;
-
     @Provides
     Location provideLocation(Context context) {
         LocationManager locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
-        return mLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        return locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
     }
 
 }

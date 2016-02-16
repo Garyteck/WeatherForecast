@@ -13,14 +13,14 @@ import dagger.ObjectGraph;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
-    private ObjectGraph activityGraph;
+    private ObjectGraph scopeGraph;
     protected ActionBar mActionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityGraph = ((App) getApplication()).createScopedGraph(getModules().toArray());
-        activityGraph.inject(this);
+        scopeGraph = ((App) getApplication()).createScopedGraph(getModules().toArray());
+        scopeGraph.inject(this);
 
         if ((mActionBar = getSupportActionBar()) != null) {
             mActionBar.setDisplayHomeAsUpEnabled(false);
@@ -30,7 +30,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        activityGraph = null;
+        scopeGraph = null;
     }
 
     protected abstract List<Object> getModules();

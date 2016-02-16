@@ -39,7 +39,7 @@ public class App extends Application {
     }
 
     private List<Object> getModules() {
-        return Collections.<Object>singletonList(new AppModule(this));
+        return Collections.<Object>singletonList(new ContextModule(this));
     }
 
     public ObjectGraph createScopedGraph(Object... modules) {
