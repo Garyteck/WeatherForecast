@@ -34,6 +34,10 @@ import com.garytech.weatherforecast.R;
 public class ForeCastListFragment extends ListFragment {
 
     /**
+     * Bundle key used to save data
+     */
+    public static final String FORECAST_PARAMETER = "forecat_parameter";
+    /**
      * Callback used to tell the Activity to update the slave view
      */
     OnListFragmentInteraction mCallback;
@@ -42,11 +46,6 @@ public class ForeCastListFragment extends ListFragment {
      * Set of data
      */
     public com.garytech.weatherfocast.model.Forecast[] mData;
-
-    /**
-     * Bundle key used to save data
-     */
-    public static final String FORECAST_PARAMETER = "forecat_parameter";
 
     /**
      * Empty fragment is used by the Fragmentmanager when the fragment is recreated

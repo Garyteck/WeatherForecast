@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.garytech.weatherfocast.helpers.DayFormatter;
 import com.garytech.weatherfocast.model.Forecast;
 import com.garytech.weatherfocast.model.Temp;
 import com.garytech.weatherfocast.model.Weather;
@@ -24,7 +23,7 @@ import com.squareup.picasso.Picasso;
 public class DetailedWeatherFragment extends Fragment {
     private static final String FORECAST_SELECTED_BUNDLE_KEY = "FORECAST_SELECTED_BUNDLE_KEY";
 
-    private Forecast previsions;
+    private Forecast mPrevisions;
 
     public DetailedWeatherFragment() {
     }
@@ -41,7 +40,7 @@ public class DetailedWeatherFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            previsions = (Forecast) getArguments().getSerializable(FORECAST_SELECTED_BUNDLE_KEY);
+            mPrevisions = (Forecast) getArguments().getSerializable(FORECAST_SELECTED_BUNDLE_KEY);
         }
     }
 
@@ -62,8 +61,8 @@ public class DetailedWeatherFragment extends Fragment {
         mDescription = (TextView) view.findViewById(R.id.description);
         mIcon = (ImageView) view.findViewById(R.id.icon);
 
-        Temp temperatures = previsions.getMain();
-        Weather[] weather = previsions.getWeather();
+        Temp temperatures = mPrevisions.getMain();
+        Weather[] weather = mPrevisions.getWeather();
 
         mMin.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getTemp_min())));
         mAverage.setText(com.garytech.weatherfocast.helpers.TemperatureFormatter.format(Float.valueOf(temperatures.getTemp())));
@@ -74,7 +73,7 @@ public class DetailedWeatherFragment extends Fragment {
 
 
         Picasso.with(getActivity())
-                .load(getString(R.string.icon_url).concat(previsions.getWeather()[0].getIcon().concat(getString(R.string.icon_extension))))
+                .load(getString(R.string.icon_url).concat(mPrevisions.getWeather()[0].getIcon().concat(getString(R.string.icon_extension))))
                 .into(mIcon);
 
         return view;

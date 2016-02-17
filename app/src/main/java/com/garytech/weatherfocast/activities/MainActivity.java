@@ -30,6 +30,13 @@ import javax.inject.Inject;
 public class MainActivity extends BaseActivity implements RequestListener<WeatherForecast>, OnListFragmentInteraction {
 
     /**
+     * key bundles
+     */
+    public final static String WEATHER_FORECAST_BUNDLE_KEY = "WEATHER_FORECAST_BUNDLE_KEY";
+    public final static String REQUEST_SUCCEEDED_BUNDLE_KEY = "REQUEST_SUCCEEDED_BUNDLE_KEY";
+    private static final DayFormatter dayFormatter = new DayFormatter();
+
+    /**
      * Rest Service
      */
     @Inject
@@ -37,14 +44,6 @@ public class MainActivity extends BaseActivity implements RequestListener<Weathe
 
     @Inject
     Request mRequest;
-
-
-    /**
-     * key bundles
-     */
-    public final static String WEATHER_FORECAST_BUNDLE_KEY = "WEATHER_FORECAST_BUNDLE_KEY";
-    public final static String REQUEST_SUCCEDED_BUNDLE_KEY = "REQUEST_SUCCEDED_BUNDLE_KEY";
-
 
     /**
      * data
@@ -63,7 +62,6 @@ public class MainActivity extends BaseActivity implements RequestListener<Weathe
     private int mCurrentPosition = -1;
 
     private boolean mRequestSucceeded;
-    private static final DayFormatter dayFormatter = new DayFormatter();
 
 
     @Override
@@ -114,7 +112,7 @@ public class MainActivity extends BaseActivity implements RequestListener<Weathe
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         mWeatherForecast = (WeatherForecast) savedInstanceState.getSerializable(WEATHER_FORECAST_BUNDLE_KEY);
-        mRequestSucceeded = savedInstanceState.getBoolean(REQUEST_SUCCEDED_BUNDLE_KEY);
+        mRequestSucceeded = savedInstanceState.getBoolean(REQUEST_SUCCEEDED_BUNDLE_KEY);
     }
 
     @Override
@@ -145,7 +143,7 @@ public class MainActivity extends BaseActivity implements RequestListener<Weathe
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putSerializable(WEATHER_FORECAST_BUNDLE_KEY, mWeatherForecast);
-        outState.putBoolean(REQUEST_SUCCEDED_BUNDLE_KEY, mRequestSucceeded);
+        outState.putBoolean(REQUEST_SUCCEEDED_BUNDLE_KEY, mRequestSucceeded);
         super.onSaveInstanceState(outState);
     }
 
